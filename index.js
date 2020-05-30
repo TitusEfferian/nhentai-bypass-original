@@ -1,19 +1,12 @@
-const https = require('https');
+const request = require('request');
 const express = require('express');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-    let body = Buffer.alloc(0);
-    https.get('https://i.nhentai.net/galleries/1608266/1.jpg', httpResponse => {
-        httpResponse.on('data', data => {
-            body = Buffer.concat([body, data]);
-        })
-        httpResponse.on('end', () => {
-            res.write(body);
-            res.end();
-        })
-    })
+    const bucketId = req.query.bucketId;
+    const nhenPage = req.query.nhenPage;
+    request.get('https://i.nhentai.net/galleries/' + bucketId + '/' + nhenPage + '.jpg').pipe(res);
 });
 
 app.listen(port, () => console.log(`listening at http://localhost:${port}`))
