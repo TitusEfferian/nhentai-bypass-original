@@ -8,7 +8,10 @@ app.get('/', (req, res) => {
         const source = req.query.source;
         request.get(source).pipe(res);
     } catch (err) {
-        console.log(err);
+        console.log({
+            request: req.query,
+            err,
+        });
         res.end();
     }
 });
