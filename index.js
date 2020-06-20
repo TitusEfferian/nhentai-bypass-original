@@ -8,7 +8,8 @@ app.get('/', (req, res) => {
         const source = req.query.source;
         request.get(source).pipe(res);
     } catch (err) {
-        res.send(`<h3>error @catch ${JSON.stringify(err)}</h3>`)
+        console.log(err);
+        res.end();
     }
 });
 
