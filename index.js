@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
             request: req.query,
             err,
         });
-        res.send(`<h1>i'm not that stupid with your injected script</h1>`);
+        res.end();
     }
 });
 
