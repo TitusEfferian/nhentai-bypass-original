@@ -6,6 +6,9 @@ const port = process.env.PORT || 8080;
 app.get('/', (req, res) => {
     try {
         const source = req.query.source;
+        console.log({
+            request: req.query,
+        });
         request.get(source).pipe(res);
     } catch (err) {
         console.log({
