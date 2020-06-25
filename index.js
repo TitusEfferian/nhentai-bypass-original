@@ -9,7 +9,10 @@ app.get('/', (req, res) => {
         console.log({
             request: req.query,
         });
-        request.get(source).pipe(res);
+        if(source.includes('nhentai.net')) {
+            request.get(source).pipe(res);
+        }
+        res.end();
     } catch (err) {
         console.log({
             request: req.query,
